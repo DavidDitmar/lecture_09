@@ -34,11 +34,18 @@ def linear_search(sequence, searched_number):
 
 
 def pattern_search(sequence, pattern):
-    pattern_length = len(pattern)
     positions = set()
-    for position, letter in enumerate(sequence):
-        if sequence[position:position + pattern_length] == pattern:
-            positions.add(position)
+    index = 0
+    while index < len(sequence) - len(pattern):
+        idx = 0
+        for letter in sequence[index:index + len(pattern)]:
+            if letter != pattern[idx]:
+                break
+            else:
+                idx += 1
+        if idx == len(pattern):                                 #nebo "else:" - dalsi podminky se provedou v pripade, ze cyklus probehl cely
+            positions.add(index)
+        index += 1
     return positions
 
 
@@ -49,9 +56,18 @@ def main():
     print(sequential_data)
     results = linear_search(sequential_data, 0)
     #print(results)
-    search = pattern_search(sequential_data, "GGG")
+    search = pattern_search(sequential_data, "ATA")
     print(search)
 
 
 if __name__ == '__main__':
     main()
+
+#def pattern_search(sequence, pattern)
+    #positions = set()
+    #index = 0
+    #while index < len(sequence) - len(pattern):
+        #if sequenxe[index:index + len(pattern)] == pattern:
+            #positions.add(index)
+        #index += 1
+    #return positions
