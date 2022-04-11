@@ -33,12 +33,24 @@ def linear_search(sequence, searched_number):
     return slovnik
 
 
+def pattern_search(sequence, pattern):
+    pattern_length = len(pattern)
+    positions = set()
+    for position, letter in enumerate(sequence):
+        if sequence[position:position + pattern_length] == pattern:
+            positions.add(position)
+    return positions
+
+
 
 def main():
-    sequential_data = read_data("sequential.json", "unordered_numbers")
+    #sequential_data = read_data("sequential.json", "unordered_numbers")
+    sequential_data = read_data("sequential.json", "dna_sequence")
     print(sequential_data)
     results = linear_search(sequential_data, 0)
-    print(results)
+    #print(results)
+    search = pattern_search(sequential_data, "GGG")
+    print(search)
 
 
 if __name__ == '__main__':
